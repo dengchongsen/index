@@ -1,0 +1,23 @@
+/*reset.css*/
+
+.web_study_box{
+    height:40px;
+    background:blanchedalmond;
+    font-family: "Microsoft YaHei";
+    font-style: normal;
+}
+.web_study_box ul{
+    display:inline-block;
+    margin:1px auto;
+}
+
+.web_study_box ul li{
+    display:inline-block;
+    border:1px solid greenyellow;
+}
+
+.web_study_box a{
+    font:10px;
+    font-weight: normal;
+    text-decoration:none;
+}
