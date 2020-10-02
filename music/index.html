@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天天音乐_v1.0</title>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    
+</head>
+<body>
+    <div class="main">
+        <div class="title">
+            <div class="logo">
+                <p>天天音乐</p>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="搜索" v-model="keywords" @keyup.enter="searchMusic">
+                <img src="images/zoom.png">
+            </div>
+        </div>
+        <!-- //title -->
+        <!-- v-show="songs_obj.length!=0" -->
+        <div class="content" >
+            <div class="music_list">
+                <div class="item" v-for="(v,i) in songs_obj">
+                    <img src="images/play.png" class="playing" @click="playMusic({i})">
+                    <span class="music">{{v.name}}</span>
+                    <span class="mv"></span>
+                </div>
+            </div>
+            <div class="player">
+                <div>
+                    <img src="images/disc.png" id="disc">
+                    <img src="./images/player_bar.png" class="player_bar">
+                    <img :src="song_pic" class="song_img ">
+                </div>
+            </div>
+            <div class="words">
+                <div id="hot_title">热门留言</div>
+                <div class="hotWords" v-for="(v,i) in hotWords">
+                    <div class="box">
+                            <img :src="v.user.avatarUrl">
+                            <span>{{v.user.nickname}}</span>
+                        </div>
+                    <div class="leftWord">
+                            <p>{{v.content}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //content -->
+        <div class="playing">
+
+        </div>
+        <!-- //playing -->
+        <div class="footer">
+            <div class="songName">{{song_name}}</div>
+        <audio loop controls autoplay :src="musicUrl" class="audio">Your browser does not support the audio element.</audio>
+    </div>
+    </div>
+    <!-- 以上是main -->
+    <!-- 制作特效 -->
+    <canvas id="canvas"></canvas>
+
+</body>
+</html>

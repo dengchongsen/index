@@ -1,0 +1,193 @@
+.main{
+    font-size:small;
+    margin:0 auto;
+    width:80%;
+    height:600px;
+    margin-top: 20px;
+}
+.main .title{
+    display: flex;
+    justify-content: space-between;
+
+}
+.main .title p{
+   
+    padding: 3px 10px;
+}
+.main .title input{
+    width:30vw;
+    margin-top:16px ;
+    padding:5px;
+}
+.search{
+    position:relative;
+}
+.search img{
+    position:absolute;
+    top:22px;
+    right:5px;
+
+}
+.content{
+    display: flex;
+    height:100%;
+    border:1px solid #000;
+    border-radius:3px;
+  
+}
+.music_list{
+    flex:1;
+    border-right:1px solid #000;
+    height:100%;
+    overflow: auto;
+    white-space: nowrap;
+}
+.music_list .item{
+    padding:5px;
+    display: flex;
+    height:20px;
+}
+
+/* 要修改 */
+.music_list .item .playing{
+    width:10%;  
+   
+}
+.music_list .item .music{
+    width:70%;
+    overflow: hidden;
+    display: inline-block;
+    margin-left: 4px;
+}
+.music_list .item .mv{
+    display: inline-block;
+    margin-left:30%;
+    width:24px;
+    background:url("../images/table.png");
+    background-position:20px 22px;
+}
+.item .mv:hover{
+    cursor:pointer;
+}
+.music_list .item .playing:hover{
+    cursor:pointer;
+}
+.player{
+    position:relative;
+    flex:2;
+    border-right:1px solid #000;
+}
+.player div{
+    height:500px;
+    position:absolute;
+    left:50%;
+    margin-left:-128px;
+    top:50%;
+    margin-top:-128px;
+}
+#disc{
+    width:100%;
+}
+.player .player_bar{
+    position:absolute;
+    top:-16%;
+    left:45%;
+    /* 设置变形的中心点 */
+    transform-origin: top;
+    transform:rotate(-45deg)
+}
+
+.player .song_img{
+    width:142px;
+    /* 设置圆角 */
+    border-radius: 50%;
+    position:absolute;
+    top:11%;
+    left:22%;
+}
+.player .act{
+    animation:bar01 1s ease-in ; 
+    animation-fill-mode: forwards;
+    /* transform:rotateY(0deg); */
+}
+.player .pause{
+    animation:bar02 1s ease-in ; 
+    animation-fill-mode: forwards;
+}
+.player .active{
+    animation: rounding 5s linear infinite;
+    
+}
+
+@keyframes rounding{
+    to{
+        transform: rotate(360deg);
+    }
+}
+@keyframes bar01{
+    to{
+        transform:rotate(-3deg);
+    }
+}
+@keyframes bar02{
+    to{
+        transform:rotate(-45deg);
+    }
+}
+
+.words{
+    flex:1;
+    overflow:auto;
+    font-size:smaller;
+    height:100%;
+    margin-left:2%;
+  
+}
+
+#hot_title{
+   
+    padding:10px;
+}
+.leftWord{
+    height:150px;
+    overflow: auto;
+    margin-bottom: 5%;
+   
+}
+.box{
+  
+    display:flex;
+}
+.box img{
+    width:20%;
+    height:20%;
+    border-radius: 50%;
+    
+}
+.box span{  
+    width:100px; 
+    margin-left:5%;
+}
+
+
+.footer .songName{
+    width:100%;
+    /* background: lightblue; */
+    text-align: center;
+    border: 1px solid lightblue;
+    border-radius: 100px;
+}
+.footer audio{
+    width:78%;
+    border-radius: 10px;
+    position:fixed;
+    top:95%;
+
+    
+}
+
+/* 滚动条 */
+/* 隐藏 */
+::-webkit-scrollbar {
+    width: 0; /*对垂直流动条有效*/
+}
