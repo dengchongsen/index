@@ -118,14 +118,13 @@ window.onload = function(){
 
         )
       },
-      mvPlaying(){
-        $(".MV").removeClass("mvPause").addClass("mvPlay");
-        $(".mask").addClass("maskActive");
-      },
       mvPause(){
         $(".MV").removeClass("mvPlay").addClass("mvPause");
         $(".mask").removeClass("maskActive");
+        $('.MV').trigger('pause');
+
       }
+    
   }//methods
   
 
@@ -140,5 +139,12 @@ $(".audio")[0].addEventListener("pause", function () {   // 暂停时会触发�
 $(".player_bar").removeClass("act").addClass("pause");
 $(".song_img").removeClass("active");
 console.log("暂停")
+});
+$(".MV")[0].addEventListener("play",function(){
+  $('.audio').trigger('pause');
+  $(".MV").removeClass("mvPause").addClass("mvPlay");
+  $(".mask").addClass("maskActive");
 })
+
+
 }

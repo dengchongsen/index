@@ -60,11 +60,11 @@
         <div class="footer">
             <div class="songName">{{song_name}}</div>
         <audio loop controls autoplay :src="musicUrl" class="audio">Your browser does not support the audio element.</audio>
-        <video :src="mvUrl" controls autoplay class="mvPause MV" @play="mvPlaying" @pause="mvPause">
+        <video :src="mvUrl" controls autoplay class="mvPause MV" >
             <p>你的浏览器不支持播放该格式的视频</p>
             <a :href="mvUrl">请点击链接观看</a>
         </video>
-        <div class="mask"></div>
+        <div class="mask" @click="mvPause"></div>
     </div>
     </div>
     <!-- 以上是main -->
