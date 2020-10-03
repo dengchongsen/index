@@ -33,10 +33,12 @@ window.onload = function(){
       keywords:"",
       songs_obj:[],
       id:0,
-      musicUrl:'',
+      musicUrl:'flag',
       hotWords:[],
       song_pic:"./images/person01.png",
-      song_name:""
+      song_name:"",
+      mvid:0,
+      mvUrl:""
     },
   methods:{
     // 搜索歌曲
@@ -45,7 +47,7 @@ window.onload = function(){
       let that = this;
       axios.get('https://autumnfish.cn/search?keywords='+this.keywords)
       .then(function(res){
-          // console.log(res);
+          console.log("搜索",res);
           res.data.result.songs.forEach(v => {
             that.songs_obj.push(v);
           });
@@ -58,7 +60,7 @@ window.onload = function(){
     },// 搜索歌曲
     // 播放音乐
     playMusic:function(e){
-      console.log(e.i);
+      console.log("音乐索引",e);
       this.id=this.songs_obj[e.i].id;
       let that = this;
       axios.get('https://autumnfish.cn/song/url?id='+this.id)
@@ -66,8 +68,8 @@ window.onload = function(){
         function(res){
           that.musicUrl=res.data.data[0].url;
           console.log("获取URL",res);
-          if(res.data.data[i].url){
-            alert("暂未获得该歌曲的播放链接");
+          if(res.data.data[0].url===null){
+            console.log("暂未获得该歌曲的播放链接");
           }
         },
         function(err){
@@ -79,16 +81,16 @@ window.onload = function(){
       axios.get("https://autumnfish.cn/comment/hot?type=0&id="+this.id)
       .then(
         function(res){
-          console.log('热评',res);
+          // console.log('热评',res);
           that.hotWords=res.data.hotComments;
-          console.log("热评",that.hotWords);
+          // console.log("热评",that.hotWords);
         }
       );
       // 获取音乐详情
       axios.get('https://autumnfish.cn/song/detail?ids='+this.id)
       .then(
         function(res){
-          console.log("详情",res);
+          // console.log("详情",res);
           that.song_pic = res.data.songs[0].al.picUrl;
           that.song_name= res.data.songs[0].name;
         },
@@ -96,7 +98,34 @@ window.onload = function(){
           console.log(err);
         }
       );
-      }// 播放音乐
+      },// 播放音乐
+
+      // 播放mve
+      playMv(e){
+        console.log("MV方法",e);
+        let mid = e.v.mvid;
+        console.log(mid);
+        let that = this;
+        axios.get("https://autumnfish.cn/mv/url?id="+mid)
+        .then(
+          function(res){
+            console.log("获取mvid",res);
+            that.mvUrl=res.data.data.url;
+          },
+          function(err){
+            console.log(err);
+          }
+
+        )
+      },
+      mvPlaying(){
+        $(".MV").removeClass("mvPause").addClass("mvPlay");
+        $(".mask").addClass("maskActive");
+      },
+      mvPause(){
+        $(".MV").removeClass("mvPlay").addClass("mvPause");
+        $(".mask").removeClass("maskActive");
+      }
   }//methods
   
 

@@ -29,7 +29,7 @@
                 <div class="item" v-for="(v,i) in songs_obj">
                     <img src="images/play.png" class="playing" @click="playMusic({i})">
                     <span class="music">{{v.name}}</span>
-                    <span class="mv"></span>
+                    <span class="mv" v-show="v.mvid!==0" @click="playMv({v})"></span>
                 </div>
             </div>
             <div class="player">
@@ -60,11 +60,13 @@
         <div class="footer">
             <div class="songName">{{song_name}}</div>
         <audio loop controls autoplay :src="musicUrl" class="audio">Your browser does not support the audio element.</audio>
+        <video :src="mvUrl" controls autoplay class="mvPause MV" @play="mvPlaying" @pause="mvPause">
+            <p>你的浏览器不支持播放该格式的视频</p>
+            <a :href="mvUrl">请点击链接观看</a>
+        </video>
+        <div class="mask"></div>
     </div>
     </div>
     <!-- 以上是main -->
-    <!-- 制作特效 -->
-    <canvas id="canvas"></canvas>
-
 </body>
 </html>
